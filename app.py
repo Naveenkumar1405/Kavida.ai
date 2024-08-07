@@ -6,7 +6,6 @@ import threading
 
 app = Flask(__name__)
 
-# Initialize the MongoDB client and database
 db = init_db()
 
 @app.route('/')
@@ -27,7 +26,6 @@ def schedule_retrieve_emails():
         schedule.run_pending()
         time.sleep(1)
 
-# Schedule the email retrieval function to run every hour
 schedule.every().hour.do(retrieve_emails, db)
 
 if __name__ == '__main__':
